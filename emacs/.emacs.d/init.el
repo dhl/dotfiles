@@ -34,3 +34,7 @@
 (column-number-mode t)
 
 (load-theme 'pastels-on-dark t)
+
+;; activating paredit when in clojure mode
+(defun turn-on-paredit () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'turn-on-paredit)
