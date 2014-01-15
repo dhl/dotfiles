@@ -20,7 +20,9 @@
                       rainbow-mode
                       pastels-on-dark-theme
                       smex
-                      js2-mode))
+                      less-css-mode
+                      js2-mode
+                      markdown-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
