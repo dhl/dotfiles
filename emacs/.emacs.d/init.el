@@ -1,4 +1,4 @@
-;; PACKAGES
+;; PACKAGE MANAGEMENT
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -12,9 +12,9 @@
 (defvar my-packages '(better-defaults
                       clojure-mode
                       clojure-test-mode
+                      cider
                       paredit
                       magit
-                      find-file-in-project
                       idle-highlight-mode
                       rainbow-delimiters
                       rainbow-mode
@@ -46,5 +46,9 @@
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
 
-;Activate js2-mode for .js files
+; Activate js2-mode for .js files
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+;; Activate DejaVU Sans Mono if available
+(when (member "DejaVu Sans Mono" (font-family-list))
+  (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
