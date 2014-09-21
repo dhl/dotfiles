@@ -11,7 +11,6 @@
 (defvar my-packages '(better-defaults
                       projectile
                       clojure-mode
-                      clojure-test-mode
                       cider
                       paredit
                       magit
