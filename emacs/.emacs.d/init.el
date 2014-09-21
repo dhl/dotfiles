@@ -2,14 +2,14 @@
 
 (require 'package)
 (add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+    '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (package-initialize)
 
 (when (null package-archive-contents)
   (package-refresh-contents))
 
 (defvar my-packages '(better-defaults
+                      projectile
                       clojure-mode
                       clojure-test-mode
                       cider
@@ -22,7 +22,8 @@
                       smex
                       less-css-mode
                       js2-mode
-                      markdown-mode))
+                      markdown-mode
+                      rspec-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -52,3 +53,6 @@
 ;; Activate DejaVU Sans Mono if available
 (when (member "DejaVu Sans Mono" (font-family-list))
   (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
+
+
+(require 'rspec-mode)
