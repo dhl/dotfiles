@@ -23,7 +23,8 @@
                       markdown-mode
                       rspec-mode
 		      php-mode
-		      exec-path-from-shell))
+		      exec-path-from-shell
+		      solarized-theme))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -52,8 +53,11 @@
 (when (member "DejaVu Sans Mono" (font-family-list))
   (set-face-attribute 'default nil :font "DejaVu Sans Mono"))
 
-
+;; RUBY
 (require 'rspec-mode)
+
+;; THEMES
+(load-theme 'solarized-dark t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
