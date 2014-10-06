@@ -8,7 +8,7 @@
 (when (null package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(better-defaults
+(defvar my-packages '(
                       projectile
                       clojure-mode
                       cider
@@ -17,12 +17,12 @@
                       idle-highlight-mode
                       rainbow-delimiters
                       rainbow-mode
-                      pastels-on-dark-theme
                       smex
                       less-css-mode
                       js2-mode
                       markdown-mode
-                      rspec-mode))
+                      rspec-mode
+		      php-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -40,8 +40,6 @@
 
 (column-number-mode t)
 
-(load-theme 'pastels-on-dark t)
-
 ; activating paredit when in clojure mode
 (defun turn-on-paredit () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'turn-on-paredit)
@@ -55,3 +53,23 @@
 
 
 (require 'rspec-mode)
+
+;; PATH variable fix for OS X
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+(when window-system (set-exec-path-from-shell-PATH))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
