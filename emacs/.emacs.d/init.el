@@ -22,7 +22,8 @@
                       js2-mode
                       markdown-mode
                       rspec-mode
-		      php-mode))
+		      php-mode
+		      exec-path-from-shell))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -53,13 +54,6 @@
 
 
 (require 'rspec-mode)
-
-;; PATH variable fix for OS X
-(defun set-exec-path-from-shell-PATH ()
-  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-(when window-system (set-exec-path-from-shell-PATH))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
