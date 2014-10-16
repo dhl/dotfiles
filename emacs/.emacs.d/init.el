@@ -24,7 +24,10 @@
                       rspec-mode
 		      php-mode
 		      exec-path-from-shell
-		      solarized-theme))
+		      solarized-theme
+		      scss-mode
+		      jsx-mode
+		      org))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -71,3 +74,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; fix the PATH variable
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (shell-command-to-string "TERM=vt100 $SHELL -i -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(when window-system (set-exec-path-from-shell-PATH))
+
+(setq scss-compile-at-save nil)
