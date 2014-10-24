@@ -83,4 +83,9 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
+
+;; SCSS-MODE
 (setq scss-compile-at-save nil)
+
+;; Stop that crazy indent-tabs-mode
+(setq-default indent-tabs-mode nil)
