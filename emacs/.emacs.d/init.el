@@ -3,16 +3,18 @@
 (require 'package)
 (add-to-list 'package-archives 
     '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
+;; (add-to-list 'package-archives
+;;    '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 (when (null package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(
+(defvar my-packages '(company
                       projectile
                       clojure-mode
                       cider
-                      paredit
+                      smartparens
                       magit
                       idle-highlight-mode
                       rainbow-delimiters
@@ -83,9 +85,26 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
+;; clojure-mode
+(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
 
 ;; SCSS-MODE
 (setq scss-compile-at-save nil)
 
 ;; Stop that crazy indent-tabs-mode
 (setq-default indent-tabs-mode nil)
+
+;; web-mode
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-indent-style 2)
+
+(setq make-backup-files nil)
+
+
+;; CL lib for php-mode
+(require 'cl)
